@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import Modal from "./Modal";
 
 const CustomerTransactions = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
   const [customers, setCustomers] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [filterAmount, setFilterAmount] = useState("");
@@ -23,8 +16,15 @@ const CustomerTransactions = () => {
     // Fetch customers
     axios
       .get("https://route-json.vercel.app/customers")
-      .then((response) => setCustomers(response.data))
-      .catch((error) => console.error("Error fetching customers:", error));
+      .then((response) => {
+        setCustomers(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching customers:", error);
+        setError(error.message);
+        setLoading(false);
+      });
 
     // Fetch transactions
     axios
@@ -92,9 +92,8 @@ const CustomerTransactions = () => {
   const filteredData = filteredCustomers(organizedData);
 
   return (
-    <div className="w-[80%] mx-auto">
+    <div className="w-[80%] mx-auto relative">
       <h1 className="text-2xl font-semibold my-4">Customer Transactions</h1>
-
       <div className="flex justify-between items-center flex-wrap">
         <div>
           <label className="text-lg">
@@ -178,42 +177,34 @@ const CustomerTransactions = () => {
                 <td class="px-6 py-4">{`Total amount is $${customer.totalAmount}
               `}</td>
                 <td class="px-6 py-4">
-                  <button
-                    className="bg-gray-900 text-white h-[50px] px-4 rounded"
-                    onClick={() => handleButtonClick(customer)}
-                  >
-                    Show Graph
-                  </button>
+                  <Modal
+                    selectedCustomer={selectedCustomer}
+                    dailyTransactionData={dailyTransactionData}
+                    handleButtonClick={handleButtonClick}
+                    customer={customer}
+                  />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      {selectedCustomer && (
-        <div>
-          <h2 className="text-xl font-semibold mb-6">
-            Daily Transaction Graph for {selectedCustomer.name}
-          </h2>
-          <ResponsiveContainer width="100%" height={400}>
-            <LineChart
-              data={dailyTransactionData}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="amount"
-                stroke="#8884d8"
-                activeDot={{ r: 8 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+      {/** error handler and loading */}
+      {(loading || error) && (
+        <div className="rounded fixed bg-white top-0 left-0 w-full h-screen flex justify-center items-center">
+          <div className="flex flex-col justify-center items-center">
+            {loading && (
+              <div className="w-[100px] h-[100px] mb-6 rounded shadow bg-gray-100 flex justify-center items-center">
+                <span>loading...</span>
+                <div></div>
+              </div>
+            )}
+            {error && (
+              <div className="rounded shadow bg-red-700 p-4 text-white">
+                <span>{error}</span>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
