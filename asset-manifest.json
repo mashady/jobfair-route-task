@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/jobfair-route-task/static/css/main.36bfd227.css",
-    "main.js": "/jobfair-route-task/static/js/main.b5bbf7d1.js",
+    "main.css": "/jobfair-route-task/static/css/main.3e1dece9.css",
+    "main.js": "/jobfair-route-task/static/js/main.de079205.js",
     "static/js/453.8dadcf55.chunk.js": "/jobfair-route-task/static/js/453.8dadcf55.chunk.js",
     "index.html": "/jobfair-route-task/index.html",
-    "main.36bfd227.css.map": "/jobfair-route-task/static/css/main.36bfd227.css.map",
-    "main.b5bbf7d1.js.map": "/jobfair-route-task/static/js/main.b5bbf7d1.js.map",
+    "main.3e1dece9.css.map": "/jobfair-route-task/static/css/main.3e1dece9.css.map",
+    "main.de079205.js.map": "/jobfair-route-task/static/js/main.de079205.js.map",
     "453.8dadcf55.chunk.js.map": "/jobfair-route-task/static/js/453.8dadcf55.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.36bfd227.css",
-    "static/js/main.b5bbf7d1.js"
+    "static/css/main.3e1dece9.css",
+    "static/js/main.de079205.js"
   ]
 }
