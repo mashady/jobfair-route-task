@@ -137,7 +137,7 @@ const CustomerTransactions = () => {
       <div className="relative  rounded py-12">
         <table className="w-full  rounded text-sm text-left text-gray-500 border-[2px] border-gray-50">
           <thead className="text-xs  text-gray-700 uppercase bg-gray-50">
-            <tr className="">
+            <tr className="flex flex-col md:flex-row mb-4 justify-between items-center">
               <th scope="col" class="px-6 py-3">
                 Customer Name
               </th>
@@ -155,7 +155,10 @@ const CustomerTransactions = () => {
 
           <tbody>
             {filteredData.map((customer) => (
-              <tr key={customer.id} className="bg-white border-b">
+              <tr
+                key={customer.id}
+                className="bg-white border-b flex flex-col md:flex-row  mb-4  justify-between items-center"
+              >
                 <th
                   scope="row"
                   class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
