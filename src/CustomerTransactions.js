@@ -135,19 +135,19 @@ const CustomerTransactions = () => {
         <div className="my-4">there no transaction with this total amount </div>
       )}
       <div className="relative  rounded py-12">
-        <table className="w-full  rounded text-sm text-left text-gray-500 border-[2px] border-gray-50">
+        <table className="w-full text-center rounded text-sm text-gray-500 border-[2px] border-gray-50">
           <thead className="text-xs  text-gray-700 uppercase bg-gray-50">
-            <tr className="flex flex-col md:flex-row mb-4 justify-between items-center">
-              <th scope="col" class="px-6 py-3">
+            <tr className="flex flex-col md:flex-row justify-between items-center">
+              <th scope="col" class="px-6 py-3 basis-1/4">
                 Customer Name
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 basis-1/4">
                 Transactions
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 basis-1/4">
                 Total Amount
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 basis-1/4">
                 Graph
               </th>
             </tr>
@@ -161,11 +161,11 @@ const CustomerTransactions = () => {
               >
                 <th
                   scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap basis-1/4"
                 >
                   {customer.name}
                 </th>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 basis-1/4">
                   <ul>
                     {customer.transactions.map((transaction) => (
                       <li key={transaction.id}>
@@ -177,9 +177,9 @@ const CustomerTransactions = () => {
                     ))}
                   </ul>
                 </td>
-                <td class="px-6 py-4">{`Total amount is $${customer.totalAmount}
+                <td class="px-6 py-4 basis-1/4">{`Total amount is $${customer.totalAmount}
               `}</td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 basis-1/4">
                   <Modal
                     selectedCustomer={selectedCustomer}
                     dailyTransactionData={dailyTransactionData}
